@@ -104,7 +104,7 @@
       text-decoration: none;
     }
 
-    /* SVG Duck Logo Styling - Small & Sleek Black */
+    /* SVG Duck Logo Styling - Small & Sleek Black Outline */
     .duck-logo-svg {
       width: 38px;
       height: 28px;
@@ -692,13 +692,13 @@
     </div>
   </section>
 
-  <!-- Interactive Quote Calculator -->
+  <!-- Interactive Quote Calculator & Contact Form -->
   <section id="quote" class="quote-section">
     <div class="container">
       <div class="quote-wrapper">
         <div class="quote-info">
           <h2>Get an Estimated Quote</h2>
-          <p>Select your required services for an instant estimate, or send us a message for a custom quote.</p>
+          <p>Select your required services for an instant estimate, then send your details directly to our inbox.</p>
 
           <div class="duck-brand-graphic">
             <svg class="duck-logo-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
@@ -709,42 +709,49 @@
         </div>
 
         <div class="quote-calculator">
-          <form id="quoteForm">
+          <!-- Formspree Endpoint directs form submissions directly to mylbiplumber@gmail.com -->
+          <form id="quoteForm" action="https://formspree.io/f/mylbiplumber@gmail.com" method="POST">
             <h3>Interactive Estimate Tool</h3>
             
             <div class="calc-options">
               <label class="calc-item">
-                <input type="checkbox" name="service" value="250" class="calc-check" data-name="Spring Turn-On Service">
+                <input type="checkbox" name="ServiceRequested" value="Spring Water Turn-On ($250+)" class="calc-check" data-price="250">
                 <span class="calc-label">Spring Water Turn-On ($250+)</span>
               </label>
 
               <label class="calc-item">
-                <input type="checkbox" name="service" value="250" class="calc-check" data-name="Fall Winterization">
+                <input type="checkbox" name="ServiceRequested" value="Fall Pipe Winterization ($250+)" class="calc-check" data-price="250">
                 <span class="calc-label">Fall Pipe Winterization ($250+)</span>
               </label>
 
               <label class="calc-item">
-                <input type="checkbox" name="service" value="150" class="calc-check" data-name="Basic Service Call / Repair">
+                <input type="checkbox" name="ServiceRequested" value="Basic Service Call / Repair ($150+)" class="calc-check" data-price="150">
                 <span class="calc-label">Basic Service Call / Repair ($150+)</span>
               </label>
             </div>
 
             <div class="estimate-total">
               <span>Estimated Starting Total:</span>
-              <span id="totalPrice" class="total-price">$0</span>
+              <span id="totalPriceDisplay" class="total-price">$0</span>
             </div>
 
+            <!-- Hidden input sends calculated estimate value inside the email -->
+            <input type="hidden" name="EstimatedTotal" id="estimatedTotalInput" value="$0" />
+
             <div class="form-group">
-              <input type="text" id="custName" placeholder="Your Name" required />
+              <input type="text" id="custName" name="CustomerName" placeholder="Your Full Name" required />
             </div>
             <div class="form-group">
-              <input type="tel" id="custPhone" placeholder="Phone Number" required />
+              <input type="tel" id="custPhone" name="CustomerPhone" placeholder="Phone Number" required />
             </div>
             <div class="form-group">
-              <textarea id="custNotes" rows="3" placeholder="Property location or service details..."></textarea>
+              <input type="email" id="custEmail" name="_replyto" placeholder="Your Email Address" required />
+            </div>
+            <div class="form-group">
+              <textarea id="custNotes" name="ServiceNotes" rows="3" placeholder="Property location or service details..."></textarea>
             </div>
 
-            <button type="submit" class="btn-gold btn-full"><i class="fa-solid fa-paper-plane"></i> Request Final Quote</button>
+            <button type="submit" class="btn-gold btn-full"><i class="fa-solid fa-paper-plane"></i> Send Quote Request</button>
           </form>
         </div>
       </div>
@@ -773,7 +780,6 @@
     </div>
   </footer>
 
-  <!-- Inline Script for Interactions -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Set footer year
@@ -791,49 +797,25 @@
 
       // Quote Calculator Logic ($250+, $250+, $150+)
       const calcChecks = document.querySelectorAll('.calc-check');
-      const totalPriceDisplay = document.getElementById('totalPrice');
+      const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+      const estimatedTotalInput = document.getElementById('estimatedTotalInput');
 
       function calculateTotal() {
         let currentTotal = 0;
         calcChecks.forEach(check => {
           if (check.checked) {
-            currentTotal += parseInt(check.value, 10);
+            currentTotal += parseInt(check.getAttribute('data-price'), 10);
           }
         });
-        totalPriceDisplay.textContent = `$${currentTotal}`;
+        
+        const formattedTotal = `$${currentTotal}`;
+        totalPriceDisplay.textContent = formattedTotal;
+        estimatedTotalInput.value = formattedTotal;
       }
 
       calcChecks.forEach(check => {
         check.addEventListener('change', calculateTotal);
       });
-
-      // Quote Form Submission
-      const quoteForm = document.getElementById('quoteForm');
-      if (quoteForm) {
-        quoteForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-
-          const name = document.getElementById('custName').value;
-          const phone = document.getElementById('custPhone').value;
-          const currentTotal = totalPriceDisplay.textContent;
-
-          let selectedServices = [];
-          calcChecks.forEach(check => {
-            if (check.checked) {
-              selectedServices.push(check.getAttribute('data-name'));
-            }
-          });
-
-          const serviceText = selectedServices.length > 0 
-            ? selectedServices.join(', ') 
-            : 'General Inquiry';
-
-          alert(`Thank you, ${name}!\n\nWe received your request for:\nServices: ${serviceText}\nEstimated Starting Total: ${currentTotal}\n\nWe will call you at ${phone} shortly.`);
-
-          quoteForm.reset();
-          calculateTotal();
-        });
-      }
     });
   </script>
 </body>
