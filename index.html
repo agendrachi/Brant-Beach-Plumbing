@@ -6,23 +6,562 @@
   <title>Brant Beach Plumbing | Long Beach Island, NJ</title>
   <meta name="description" content="Trusted local plumbing services, seasonal turn-ons, winterization, and emergency plumbing for Brant Beach and LBI." />
   
-  <!-- Fonts & Icons -->
+  <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Navy Blue & Light Gold Theme Setup */
+    :root {
+      --navy-dark: #0A1424;
+      --navy-main: #112240;
+      --navy-card: #1D3153;
+      --gold-primary: #E5C158;
+      --gold-light: #F4E0A5;
+      --gold-hover: #D4AF37;
+      --text-light: #FFFFFF;
+      --text-muted: #B0C0DE;
+      --border-gold: rgba(229, 193, 88, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--navy-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .company-name {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Top Info Bar */
+    .top-bar {
+      background-color: #050B14;
+      border-bottom: 1px solid rgba(229, 193, 88, 0.2);
+      padding: 10px 0;
+      font-size: 0.88rem;
+    }
+    .top-bar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .top-info span {
+      margin-right: 20px;
+      color: var(--text-muted);
+    }
+    .top-info i {
+      color: var(--gold-primary);
+      margin-right: 6px;
+    }
+    .top-info a {
+      color: var(--text-light);
+      text-decoration: none;
+    }
+    .top-phone a {
+      color: var(--gold-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: var(--navy-dark);
+      border-bottom: 2px solid var(--gold-primary);
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    /* SVG Duck Logo Styling - Small & Sleek Black */
+    .duck-logo-svg {
+      width: 38px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .duck-path {
+      stroke: #000000;
+      stroke-width: 10;
+      fill: #000000;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .company-name {
+      color: var(--gold-primary);
+      font-weight: 900;
+      font-size: 1.35rem;
+      letter-spacing: 1.5px;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+    .company-sub {
+      color: var(--text-light);
+      font-size: 0.78rem;
+      letter-spacing: 3.5px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+    .nav-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    .nav-link:hover, .nav-link.highlight {
+      color: var(--gold-primary);
+    }
+    .mobile-only-btn {
+      display: none;
+    }
+
+    /* Action Buttons */
+    .btn-primary {
+      background: transparent;
+      border: 2px solid var(--gold-primary);
+      color: var(--gold-primary);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: var(--gold-primary);
+      color: var(--navy-dark);
+    }
+    .btn-gold {
+      background: var(--gold-primary);
+      color: var(--navy-dark);
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 800;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background 0.3s ease;
+    }
+    .btn-gold:hover {
+      background: var(--gold-hover);
+    }
+    .btn-outline {
+      border: 2px solid var(--text-light);
+      color: var(--text-light);
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+    .btn-full {
+      width: 100%;
+      text-align: center;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold-primary);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* Hero Banner */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, rgba(10,20,36,0.92), rgba(17,34,64,0.85)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover;
+      padding: 90px 0 70px 0;
+      text-align: center;
+      border-bottom: 2px solid var(--border-gold);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(229, 193, 88, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .hero-features {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .feature-tag {
+      background: var(--navy-card);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      border: 1px solid var(--border-gold);
+      font-weight: 600;
+    }
+    .feature-tag i {
+      color: var(--gold-primary);
+      margin-right: 6px;
+    }
+
+    /* Turn-Ons Section */
+    .turnon-banner {
+      padding: 70px 0;
+      background-color: var(--navy-main);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .turnon-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      align-items: center;
+    }
+    .gold-subtitle {
+      color: var(--gold-primary);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+    .turnon-text h2 {
+      font-size: 2.2rem;
+      margin: 10px 0 15px;
+      font-weight: 800;
+    }
+    .checklist {
+      list-style: none;
+      margin-top: 20px;
+    }
+    .checklist li {
+      margin-bottom: 12px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+    .checklist i {
+      color: var(--gold-primary);
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+    .turnon-card {
+      background: var(--navy-card);
+      padding: 35px;
+      border-radius: 8px;
+      border: 1.5px solid var(--gold-primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .turnon-card h3 {
+      margin-bottom: 10px;
+      color: var(--gold-primary);
+      font-size: 1.4rem;
+    }
+    .turnon-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+    }
+
+    /* Services Grid */
+    .services-section {
+      padding: 80px 0;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title h2 {
+      font-size: 2.4rem;
+      color: #fff;
+      font-weight: 800;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .service-card {
+      background: var(--navy-card);
+      padding: 30px;
+      border-radius: 6px;
+      border: 1px solid rgba(229, 193, 88, 0.2);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold-primary);
+    }
+    .card-icon {
+      font-size: 2.2rem;
+      color: var(--gold-primary);
+      margin-bottom: 15px;
+    }
+    .service-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Quote Calculator Section */
+    .quote-section {
+      padding: 80px 0;
+      background: var(--navy-main);
+      border-top: 2px solid var(--border-gold);
+    }
+    .quote-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+    .quote-info h2 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+    .duck-brand-graphic {
+      margin-top: 35px;
+      text-align: center;
+      padding: 25px;
+      border: 1px dashed var(--gold-primary);
+      border-radius: 8px;
+      background: rgba(10, 20, 36, 0.4);
+    }
+    .duck-brand-graphic .duck-logo-svg {
+      width: 50px;
+      height: 38px;
+      margin-bottom: 10px;
+    }
+    .duck-brand-graphic p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .quote-calculator {
+      background: var(--navy-card);
+      padding: 35px;
+      border-radius: 8px;
+      border: 1.5px solid var(--gold-primary);
+    }
+    .quote-calculator h3 {
+      margin-bottom: 20px;
+      color: var(--gold-primary);
+      font-size: 1.35rem;
+    }
+    .calc-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .calc-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      background: var(--navy-dark);
+      padding: 12px 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+    }
+    .calc-check {
+      accent-color: var(--gold-primary);
+      width: 20px;
+      height: 20px;
+    }
+    .estimate-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .total-price {
+      font-size: 1.8rem;
+      color: var(--gold-primary);
+      font-weight: 900;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--navy-dark);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      color: #fff;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+    }
+
+    /* Footer */
+    .footer {
+      background: #050B14;
+      padding: 40px 0 20px;
+      border-top: 1px solid rgba(229, 193, 88, 0.2);
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .footer-brand {
+      max-width: 450px;
+    }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 10px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .footer-links a:hover {
+      color: var(--gold-primary);
+    }
+    .footer-bottom {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 20px;
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 900px) {
+      .turnon-grid, .quote-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hamburger {
+        display: block;
+      }
+      .nav-cta {
+        display: none;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--navy-dark);
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 2px solid var(--gold-primary);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-only-btn {
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Top Emergency & Info Bar -->
+  <!-- Top Info Bar -->
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="top-info">
-        <span><i class="fa-solid fa-location-dot"></i> Serving Brant Beach & All of LBI, NJ</span>
-        <span><i class="fa-solid fa-envelope"></i> <a href="mailto:mylbiplumber@gmail.com" style="color: inherit; text-decoration: none;">mylbiplumber@gmail.com</a></span>
+        <span><i class="fa-solid fa-location-dot"></i> Serving Brant Beach & All of LBI</span>
+        <span><i class="fa-solid fa-envelope"></i> <a href="mailto:mylbiplumber@gmail.com">mylbiplumber@gmail.com</a></span>
       </div>
       <div class="top-phone">
         <a href="tel:6098917773"><i class="fa-solid fa-phone"></i> (609) 891-7773</a>
@@ -30,16 +569,13 @@
     </div>
   </div>
 
-  <!-- Navigation Header -->
+  <!-- Main Navigation -->
   <header class="navbar">
     <div class="container nav-container">
       <a href="#" class="brand-logo">
-        <!-- Brant Duck Vector Logo -->
-        <svg class="duck-logo-svg" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" 
-                stroke="#D4AF37" stroke-width="5" fill="rgba(212, 175, 55, 0.08)" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M 155 70 C 120 78, 60 78, 20 100" stroke="#D4AF37" stroke-dasharray="3 3" stroke-width="3" fill="none"/>
-          <circle cx="182" cy="20" r="2.5" fill="#D4AF37"/>
+        <!-- SVG Brant Duck Silhouette (Black & Small) -->
+        <svg class="duck-logo-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+          <path class="duck-path" d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" />
         </svg>
         <div class="brand-text">
           <span class="company-name">BRANT BEACH</span>
@@ -64,9 +600,8 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Banner -->
   <section class="hero">
-    <div class="hero-overlay"></div>
     <div class="container hero-content">
       <div class="hero-badge">
         <i class="fa-solid fa-water"></i> Long Beach Island's Coastal Plumbing Experts
@@ -87,7 +622,7 @@
     </div>
   </section>
 
-  <!-- Seasonal Turn-Ons Banner -->
+  <!-- Seasonal Turn-Ons Section -->
   <section id="turnons" class="turnon-banner">
     <div class="container turnon-grid">
       <div class="turnon-text">
@@ -103,13 +638,13 @@
       </div>
       <div class="turnon-card">
         <h3>Schedule Your Spring Opening</h3>
-        <p>Slots fill fast during LBI opening season. Book your date early!</p>
+        <p>Slots fill fast during LBI opening season. Reserve your date early!</p>
         <a href="#quote" class="btn-gold btn-full"><i class="fa-solid fa-calendar-check"></i> Reserve Turn-On Date</a>
       </div>
     </div>
   </section>
 
-  <!-- Core Plumbing Services -->
+  <!-- Plumbing Services -->
   <section id="services" class="services-section">
     <div class="container">
       <div class="section-title">
@@ -157,7 +692,7 @@
     </div>
   </section>
 
-  <!-- Interactive Quote Calculator & Contact -->
+  <!-- Interactive Quote Calculator -->
   <section id="quote" class="quote-section">
     <div class="container">
       <div class="quote-wrapper">
@@ -166,9 +701,8 @@
           <p>Select your required services for an instant estimate, or send us a message for a custom quote.</p>
 
           <div class="duck-brand-graphic">
-            <svg class="duck-logo-large" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" 
-                    stroke="#D4AF37" stroke-width="4" fill="rgba(212, 175, 55, 0.05)"/>
+            <svg class="duck-logo-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+              <path class="duck-path" d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" />
             </svg>
             <p><strong>Brant Beach Plumbing</strong><br>Serving Brant Beach, Ship Bottom, Beach Haven, and all of LBI.<br>Email: mylbiplumber@gmail.com</p>
           </div>
@@ -180,27 +714,18 @@
             
             <div class="calc-options">
               <label class="calc-item">
-                <input type="checkbox" name="service" value="150" class="calc-check" data-name="Spring Turn-On Service">
-                <span class="checkmark"></span>
-                <span class="calc-label">Spring Water Turn-On ($150+)</span>
+                <input type="checkbox" name="service" value="250" class="calc-check" data-name="Spring Turn-On Service">
+                <span class="calc-label">Spring Water Turn-On ($250+)</span>
               </label>
 
               <label class="calc-item">
-                <input type="checkbox" name="service" value="175" class="calc-check" data-name="Fall Winterization">
-                <span class="checkmark"></span>
-                <span class="calc-label">Fall Pipe Winterization ($175+)</span>
+                <input type="checkbox" name="service" value="250" class="calc-check" data-name="Fall Winterization">
+                <span class="calc-label">Fall Pipe Winterization ($250+)</span>
               </label>
 
               <label class="calc-item">
-                <input type="checkbox" name="service" value="120" class="calc-check" data-name="Leak / Basic Repair">
-                <span class="checkmark"></span>
-                <span class="calc-label">Basic Plumbing / Leak Repair ($120+)</span>
-              </label>
-
-              <label class="calc-item">
-                <input type="checkbox" name="service" value="95" class="calc-check" data-name="Outdoor Shower Service">
-                <span class="checkmark"></span>
-                <span class="calc-label">Outdoor Shower Service/Inspect ($95+)</span>
+                <input type="checkbox" name="service" value="150" class="calc-check" data-name="Basic Service Call / Repair">
+                <span class="calc-label">Basic Service Call / Repair ($150+)</span>
               </label>
             </div>
 
@@ -216,7 +741,7 @@
               <input type="tel" id="custPhone" placeholder="Phone Number" required />
             </div>
             <div class="form-group">
-              <textarea id="custNotes" rows="3" placeholder="LBI property location or details..."></textarea>
+              <textarea id="custNotes" rows="3" placeholder="LBI property location or service details..."></textarea>
             </div>
 
             <button type="submit" class="btn-gold btn-full"><i class="fa-solid fa-paper-plane"></i> Request Final Quote</button>
@@ -230,8 +755,8 @@
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
-        <svg class="duck-logo-svg" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" stroke="#D4AF37" stroke-width="5" fill="none"/>
+        <svg class="duck-logo-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+          <path class="duck-path" d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" />
         </svg>
         <p>Brant Beach Plumbing &bull; Quality local plumbing and seasonal services for Long Beach Island, New Jersey.</p>
       </div>
@@ -248,7 +773,68 @@
     </div>
   </footer>
 
-  <!-- Custom Script -->
-  <script src="script.js"></script>
+  <!-- Inline Script for Interactions -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Mobile Hamburger Toggle
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
+
+      // Quote Calculator Logic ($250+, $250+, $150+)
+      const calcChecks = document.querySelectorAll('.calc-check');
+      const totalPriceDisplay = document.getElementById('totalPrice');
+
+      function calculateTotal() {
+        let currentTotal = 0;
+        calcChecks.forEach(check => {
+          if (check.checked) {
+            currentTotal += parseInt(check.value, 10);
+          }
+        });
+        totalPriceDisplay.textContent = `$${currentTotal}`;
+      }
+
+      calcChecks.forEach(check => {
+        check.addEventListener('change', calculateTotal);
+      });
+
+      // Quote Form Submission
+      const quoteForm = document.getElementById('quoteForm');
+      if (quoteForm) {
+        quoteForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById('custName').value;
+          const phone = document.getElementById('custPhone').value;
+          const currentTotal = totalPriceDisplay.textContent;
+
+          let selectedServices = [];
+          calcChecks.forEach(check => {
+            if (check.checked) {
+              selectedServices.push(check.getAttribute('data-name'));
+            }
+          });
+
+          const serviceText = selectedServices.length > 0 
+            ? selectedServices.join(', ') 
+            : 'General Inquiry';
+
+          alert(`Thank you, ${name}!\n\nWe received your request for:\nServices: ${serviceText}\nEstimated Starting Total: ${currentTotal}\n\nWe will call you at ${phone} shortly.`);
+
+          quoteForm.reset();
+          calculateTotal();
+        });
+      }
+    });
+  </script>
 </body>
 </html>
