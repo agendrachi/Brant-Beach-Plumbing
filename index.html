@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brant Beach Plumbing | Coastal & Local Plumbing</title>
-  <meta name="description" content="Trusted local plumbing services, seasonal turn-ons, winterization, and residential plumbing for LBI, Beach Haven West, and all of Southern Ocean County." />
+  <meta name="description" content="Trusted local plumbing services, seasonal turn-ons, winterization, and residential plumbing for LBI, Beach Haven West, and all of Southern Ocean County since 1978." />
   
-  <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -375,10 +374,122 @@
       font-size: 0.92rem;
     }
 
+    /* Yelp Reviews Carousel */
+    .reviews-section {
+      padding: 80px 0;
+      background: var(--navy-main); /* Integrates with the dark theme */
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .reviews-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .carousel-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px 5px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+    .review-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      background: var(--navy-card);
+      padding: 30px;
+      border-radius: 8px;
+      border: 1px solid rgba(229, 193, 88, 0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-sizing: border-box;
+    }
+    @media (min-width: 768px) {
+      .review-card {
+        flex: 0 0 calc(50% - 10px);
+      }
+    }
+    .stars {
+      color: #FF1A1A; /* Yelp Red */
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .review-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+    .review-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    .review-author {
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+    .carousel-arrow {
+      background: var(--navy-card);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      transition: all 0.3s;
+    }
+    .carousel-arrow:hover {
+      background: var(--gold-primary);
+      color: var(--navy-dark);
+      transform: scale(1.05);
+    }
+    .left-arrow { left: -20px; }
+    .right-arrow { right: -20px; }
+
+    .leave-review-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .yelp-button {
+      display: inline-block;
+      background-color: #E00707;
+      color: white;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+      box-shadow: 0 4px 6px rgba(224, 7, 7, 0.3);
+    }
+    .yelp-button:hover {
+      background-color: #b80606;
+      color: white;
+    }
+
     /* Quote Calculator Section */
     .quote-section {
       padding: 80px 0;
-      background: var(--navy-main);
+      background: var(--navy-dark); /* Changed to dark to alternate backgrounds nicely */
       border-top: 2px solid var(--border-gold);
     }
     .quote-wrapper {
@@ -552,11 +663,17 @@
         margin-top: 10px;
       }
     }
+
+    /* Hide arrows on mobile for native swiping */
+    @media (max-width: 768px) {
+      .carousel-arrow {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Top Info Bar -->
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="top-info">
@@ -569,11 +686,9 @@
     </div>
   </div>
 
-  <!-- Main Navigation -->
   <header class="navbar">
     <div class="container nav-container">
       <a href="#" class="brand-logo">
-        <!-- SVG Brant Duck Silhouette (Black & Small) -->
         <svg class="duck-logo-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
           <path class="duck-path" d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" />
         </svg>
@@ -600,14 +715,13 @@
     </div>
   </header>
 
-  <!-- Hero Banner -->
   <section class="hero">
     <div class="container hero-content">
       <div class="hero-badge">
         <i class="fa-solid fa-water"></i> Coastal Plumbing & Seasonal Services
       </div>
       <h1>Reliable Coastal Plumbing & Seasonal Turn-Ons</h1>
-      <p>Specializing in shore house opening & winterization, leak repairs, outdoor showers, and residential plumbing basics.</p>
+      <p>Specializing in shore house opening & winterization, leak repairs, outdoor showers, and residential plumbing basics since 1978.</p>
       
       <div class="hero-buttons">
         <a href="#quote" class="btn-gold"><i class="fa-solid fa-calculator"></i> Get an Instant Quote</a>
@@ -615,14 +729,13 @@
       </div>
 
       <div class="hero-features">
+        <div class="feature-tag"><i class="fa-solid fa-award"></i> Established in 1978</div>
         <div class="feature-tag"><i class="fa-solid fa-shield-halved"></i> Licensed & Insured</div>
         <div class="feature-tag"><i class="fa-solid fa-sun"></i> Spring Turn-On Specialists</div>
-        <div class="feature-tag"><i class="fa-solid fa-house-chimney"></i> Local Coastal Service</div>
       </div>
     </div>
   </section>
 
-  <!-- Seasonal Turn-Ons Section -->
   <section id="turnons" class="turnon-banner">
     <div class="container turnon-grid">
       <div class="turnon-text">
@@ -644,7 +757,6 @@
     </div>
   </section>
 
-  <!-- Plumbing Services -->
   <section id="services" class="services-section">
     <div class="container">
       <div class="section-title">
@@ -692,7 +804,64 @@
     </div>
   </section>
 
-  <!-- Interactive Quote Calculator & Contact Form -->
+  <section id="reviews" class="reviews-section">
+    <div class="container reviews-container">
+      <div class="section-title">
+        <h2>What Our Customers Say</h2>
+        <p>Don't just take our word for it—see why LBI trusts us.</p>
+      </div>
+      
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow left-arrow" onclick="slideCarousel(-1)" aria-label="Previous Review">&#10094;</button>
+
+        <div class="carousel-track" id="reviewsTrack">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-date">March 13, 2026</p>
+            <p class="review-text">"Recently returned to the island for the first time in over a month, only to find a couple of busted pipes under my house. John Jr. called me back right away and said he would be out the following morning to fix the pipes, which he was, and did, and all at a very reasonable price. I will use them again."</p>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-date">July 2, 2025</p>
+            <p class="review-text">"I had two outside jobs including getting a water line to my dock. John returned my call within a couple of hours and he came over at 'my convenience', gave me an estimate. The job was done when he promised and on the lower end of the estimate. Support your local businesses. Friendly, reliable and professional."</p>
+            <p class="review-author">- Isabel, Beach Haven West</p>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-date">September 27, 2023</p>
+            <p class="review-text">"Brant Beach Plumbing and Heating does a fabulous job! Very reliable, dependable, and professional"</p>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-date">April 14, 2022</p>
+            <p class="review-text">"I have used them on various times over the past 5 years and they are knowledgeable, courteous and prompt. I am grateful to have found them and recommend them highly."</p>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-date">November 21, 2019</p>
+            <p class="review-text">"Brant Beach is a professional and reliable business. They are extremely customer oriented and can be trusted to do the work right. Highly recommend."</p>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-date">September 21, 2019</p>
+            <p class="review-text">"Nothing but good service over a period of many years. They have responded quickly to emergencies. Routine service is always done in a timely manner."</p>
+          </div>
+        </div>
+
+        <button class="carousel-arrow right-arrow" onclick="slideCarousel(1)" aria-label="Next Review">&#10095;</button>
+      </div>
+
+      <div class="leave-review-container">
+        <a href="https://www.yelp.com/biz/brant-beach-plumbing-and-heating-long-beach" target="_blank" class="yelp-button">Leave a Review on Yelp</a>
+      </div>
+    </div>
+  </section>
+
   <section id="quote" class="quote-section">
     <div class="container">
       <div class="quote-wrapper">
@@ -704,11 +873,10 @@
             <svg class="duck-logo-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
               <path class="duck-path" d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" />
             </svg>
-            <p><strong>Brant Beach Plumbing</strong><br>Serving LBI, Beach Haven West, and all of Southern Ocean County.<br>Email: mylbiplumber@gmail.com</p>
+            <p><strong>Brant Beach Plumbing</strong><br>Serving LBI, Beach Haven West, and all of Southern Ocean County since 1978.<br>Email: mylbiplumber@gmail.com</p>
           </div>
         </div>
-<div class="quote-calculator">
-          <!-- Formspree Endpoint directs form submissions directly to mylbiplumber@gmail.com -->
+        <div class="quote-calculator">
           <form id="quoteForm" action="https://formspree.io/f/mjykyrgq" method="POST">
             <h3>Interactive Estimate Tool</h3>
             
@@ -734,7 +902,6 @@
               <span id="totalPriceDisplay" class="total-price">$0</span>
             </div>
 
-            <!-- Hidden input sends calculated estimate value inside the email -->
             <input type="hidden" name="EstimatedTotal" id="estimatedTotalInput" value="$0" />
 
             <div class="form-group">
@@ -757,14 +924,13 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
         <svg class="duck-logo-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
           <path class="duck-path" d="M 230 35 C 215 32, 195 20, 185 8 C 175 -2, 160 -2, 150 12 C 142 24, 142 42, 155 58 C 158 62, 160 67, 155 70 C 140 82, 110 82, 70 60 C 40 44, 20 62, 10 75 C 2 86, 0 102, 15 118 C 35 138, 90 142, 155 135 C 200 130, 230 105, 222 82 C 218 70, 195 55, 175 42 C 190 40, 215 42, 230 35 Z" />
         </svg>
-        <p>Brant Beach Plumbing &bull; Serving LBI, Beach Haven West, and all of Southern Ocean County.</p>
+        <p>Brant Beach Plumbing &bull; Serving LBI, Beach Haven West, and all of Southern Ocean County since 1978.</p>
       </div>
       <div class="footer-links">
         <a href="#services">Services</a>
@@ -816,6 +982,20 @@
         check.addEventListener('change', calculateTotal);
       });
     });
+
+    // Reviews Carousel Slide Logic
+    function slideCarousel(direction) {
+      const track = document.getElementById('reviewsTrack');
+      const cardWidth = track.querySelector('.review-card').offsetWidth;
+      const gap = 20; 
+      const scrollAmount = cardWidth + gap;
+      
+      track.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+      });
+    }
   </script>
 </body>
 </html>
+
